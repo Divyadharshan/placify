@@ -61,6 +61,6 @@ To run the project locally, follow these steps:
 * Reviews: Users can submit reviews for places, including rating them and writing comments.
 
 ## Live Demo
-- [Live](https://nodejs.org/)
+- [https://placify-djb3.onrender.com/](https://placify-djb3.onrender.com/)
 
 ### Courtesy : Colt Steele (Udemy Instructor)
