@@ -38,7 +38,7 @@
         <li class="list-group-item text-muted">Created by <%= c.author.username %>
         </li>
       </ul>
-      <% if(currentUser && c.author.equals(currentUser._id)){ %>
+      <% if(currentUser){ %>
         <% if (currentUser.username===process.env.ADMIN_NAME || c.author.equals(currentUser._id)) { %>
           <div class="card-body">
             <a class="card-link btn btn-info" href="/places/<%=c._id%>/edit">Edit</a>
@@ -80,6 +80,7 @@
             <h6 class="text-muted">By <%= r.author.username %>
             </h6>
             <% if(currentUser){ %>
+             <%= currentUser.username %>
              <% if(currentUser.username===process.env.ADMIN_NAME || r.author.equals(currentUser._id)){ %>
               <form action="/places/<%=c._id%>/reviews/<%=r._id%>?_method=DELETE" method="post">
                 <button class="btn btn-danger">Delete</button>
