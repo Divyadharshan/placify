@@ -80,7 +80,6 @@
             <h6 class="text-muted">By <%= r.author.username %>
             </h6>
             <% if(currentUser){ %>
-             <%= currentUser.username %>
              <% if(currentUser.username===process.env.ADMIN_NAME || r.author.equals(currentUser._id)){ %>
               <form action="/places/<%=c._id%>/reviews/<%=r._id%>?_method=DELETE" method="post">
                 <button class="btn btn-danger">Delete</button>
