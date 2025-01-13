@@ -1,0 +1,93 @@
+<% layout('./layouts/boilerplate') %>
+  <div class="container my-3 d-flex flex-column align-items-center">
+    <div class="card" style="max-width: 500px; width: 100%;">
+
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <% let isActive=true; %>
+            <% for(let img of c.images) { %>
+              <div class="carousel-item <%= isActive ? 'active' : '' %>">
+                <img class="d-block mx-auto" src="<%= img.url %>" alt="Slide"
+                  style="width: 500px; height: 300px; object-fit: cover;">
+              </div>
+              <% isActive=false; %>
+                <% } %>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+      <div class="card-body">
+        <h2 class="card-title">
+          <%= c.title %>
+        </h2>
+        <p class="card-text">
+          <%= c.description %>
+        </p>
+      </div>
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item text-muted">Location: <%= c.location %>
+        </li>
+        <li class="list-group-item text-muted">Created by <%= c.author.username %>
+        </li>
+      </ul>
+      <% if(currentUser && c.author.equals(currentUser._id)){ %>
+        <% if (currentUser.username===process.env.ADMIN_NAME || c.author.equals(currentUser._id)) { %>
+          <div class="card-body">
+            <a class="card-link btn btn-info" href="/places/<%=c._id%>/edit">Edit</a>
+            <form class="d-inline" action="/places/<%=c._id%>?_method=DELETE" method="post">
+              <button class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+          <% } %>
+            <% } %>
+    </div>
+    <div style="margin-top:20px;max-width: 500px; width: 100%;">
+      <h3>Add a review</h3>
+      <form action="/places/<%=c._id%>/reviews" method="post" class="mb-3 validated-form" novalidate>
+        <div class="mb-3">
+          <label class="form-label" for="rating">Rating</label>
+          <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
+        </div>
+        <div class="mb-3">
+          <label class="for-label" for="body">Review</label>
+          <textarea class="form-control" name="review[body]" id="body" cols="30" rows="5" required></textarea>
+          <div class="valid-feedback">
+            Valid!
+          </div>
+        </div>
+        <button class="btn btn-success">Submit</button>
+      </form>
+      <br>
+      <h3>Reviews</h3>
+      <% for(let r of c.reviews) { %>
+        <div class="card">
+          <div class="card-body">
+            <p class="card-text"><%=r.body%>
+            </p>
+            <h6 class="card-title">Rating :
+              <% for(let i=1; i<=r.rating; i++){ %>
+                <span style="font-size:24px; color:#FFD700;">★</span>
+                <% } %>
+            </h6>
+            <h6 class="text-muted">By <%= r.author.username %>
+            </h6>
+            <% if(currentUser){ %>
+             <% if(currentUser.username===process.env.ADMIN_NAME || r.author.equals(currentUser._id)){ %>
+              <form action="/places/<%=c._id%>/reviews/<%=r._id%>?_method=DELETE" method="post">
+                <button class="btn btn-danger">Delete</button>
+              </form>
+              <% } %>
+              <% } %>
+          </div>
+        </div>
+        <% } %>
+    </div>
+  </div>

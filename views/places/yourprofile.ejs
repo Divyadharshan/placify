@@ -1,0 +1,40 @@
+<% layout('./layouts/boilerplate') %>
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+    <div class="card" style="width: 100%; max-width: 400px;">
+        <div class="card-body text-center">
+            <h2 class="card-title mb-3">Profile</h2>
+            <p class="card-text"><strong>Username:</strong> <%= user.username %></p>
+            <p class="card-text"><strong>Email:</strong> <%= user.email %></p>
+            <p class="card-text"><strong>Date Joined:</strong> <%= user.dateJoined %></p>
+            <p class="card-text"><strong>Places Added:</strong> <%= campcount %></p>
+            <p class="card-text"><strong>Reviews:</strong> <%= reviewcount %></p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .card-body p {
+        text-align: left;
+        font-size: 18px;
+        margin: 10px 0;
+    }
+
+    .card-body h2 {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .card {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-radius: 20px;
+       
+    }
+
+</style>

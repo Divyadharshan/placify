@@ -1,0 +1,46 @@
+<% layout('./layouts/boilerplate') %>
+   <div class="row">
+   <hr>
+      <h1 class="text-center">New Place</h1>
+      <div class="col-6 offset-3">
+         <form action="/places" method="post" class="validated-form" novalidate enctype="multipart/form-data">
+            <div class="mb-4">
+               <label class="form-label" for="title">Title</label>
+               <input class="form-control" type="text" id="title" name="campground[title]" required>
+               <div class="valid-feedback">
+                  Valid!
+               </div>
+            </div>
+            <div class="mb-4">
+               <label class="form-label" for="location">Location</label>
+               <input class="form-control" type="text" id="location" name="campground[location]" required>
+               <div class="valid-feedback">
+                  Valid!
+               </div>
+            </div>
+            <label class="custom-file" for="image">Add images</label>
+               <input type="file" class="form-control" id="image" name="image" multiple required>
+            <br>
+            <!--
+            <div class="mb-4">
+               <label class="form-label" for="image">Image URL</label>
+               <input class="form-control" type="file" id="image" name="campground[image]" multiple required>
+               <div class="valid-feedback">
+                 Valid!
+               </div>
+            </div>-->
+            <div class="mb-4">
+               <label class="form-label" for="description">Description about the place</label>
+               <textarea class="form-control" type="text" id="description" name="campground[description]"
+                  required></textarea>
+               <div class="valid-feedback">
+                  Valid!
+               </div>
+            </div>
+            <div class="mb-4">
+               <button class="btn btn-success">Add Place</button>
+            </div>
+         </form><br>
+         <br>
+      </div>
+   </div>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placify</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/home.css">
+    <link rel="shortcut icon" href="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FtcGluZ3xlbnwwfHwwfHx8MA%3D%3D" type="image/x-icon">
+
+    <style>
+        body {
+            background-color: #343a40;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cover-container {
+            max-width: 100%;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        header h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        nav .nav-link {
+            font-size: 1rem;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main h1 {
+            font-size: 2.5rem;
+        }
+
+        main p {
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        @media (max-width: 576px) {
+            nav .nav-link {
+                display: block;
+                margin-bottom: 0.5rem;
+            }
+
+            main h1 {
+                font-size: 2rem;
+            }
+
+            main p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                font-size: 1rem;
+                padding: 0.75rem 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cover-container d-flex flex-column justify-content-between w-100 h-100 p-3 mx-auto">
+        <header class="mb-3">
+            <h3>Placify</h3>
+            <nav class="nav nav-masthead justify-content-center">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                <a class="nav-link" href="/places">Places</a>
+                <% if (!currentUser) { %>
+                    <a class="nav-link" href="/login">Sign In</a>
+                    <a class="nav-link" href="/register">Sign Up</a>
+                <% } else { %>
+                    <a class="nav-link" href="/logout">Logout</a>
+                <% } %>
+            </nav>
+        </header>
+        <main class="px-3">
+            <h1>Placify</h1>
+            <p class="lead"> Welcome to Placify! <br> Jump right in and explore places. <br>
+                Feel free to share some of your own experience and comment on others!</p>
+            <a href="/places" class="btn btn-lg btn-secondary font-weight-bold border-white bg-white text-dark">
+                View Places
+            </a>
+        </main>
+        <footer class="mt-auto text-white-50">
+            <p>&copy; 2025 Placify </p>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
