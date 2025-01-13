@@ -70,28 +70,40 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 
-/*
+
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/google/callback",
-    passReqToCallback: true
+    callbackURL: "https://placify-djb3.onrender.com/auth/google/callback",
 }, async (accessToken, refreshToken, profile, done) => {
     try {
+        // Check if the user already exists
         let user = await User.findOne({ googleId: profile.id });
+
         if (!user) {
-            user = new User({
-                username: profile.displayName,
-                email: profile.emails[0].value,
-                googleId: profile.id,
-            });
-            await user.save();
+            user = await User.findOne({ email: profile.emails[0].value });
+
+            if (user) {
+                // Link the existing account to Google
+                user.googleId = profile.id;
+                await user.save();
+            } else {
+                // Create a new user
+                user = new User({
+                    username: profile.displayName,
+                    email: profile.emails[0].value,
+                    googleId: profile.id,
+                });
+                await user.save();
+            }
         }
-        done(null, user);
+
+        return done(null, user);
     } catch (err) {
-        done(err, null);
+        return done(err, null);
     }
-}));*/
+}));
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -106,7 +118,7 @@ app.use((req,res,next)=>{
 app.get("/",(req,res)=>{
     res.render("home")
 })
-/*
+
 app.get("/auth/google", passport.authenticate("google", {
     access_type: "offline",
     scope: ["profile", "email"]
@@ -118,10 +130,10 @@ app.get("/auth/google/callback",
         failureFlash: true 
     }), 
     (req, res) => {
-        req.flash("success", "Welcome to YelpCamp!");
-        res.redirect("/campgrounds");
+        req.flash("success", "Welcome to Placify!");
+        res.redirect("/places");
     }
-);*/
+);
 
 app.use("/",userroutes);
 app.use("/places",campgroundsroutes);
@@ -131,6 +143,7 @@ app.use("/places/:id/reviews",reviewsroutes);
 app.all(/(.*)/,(req,res,next)=>{
     next(new ExpressError("Page not Found"));
 })
+
 
 app.use((err,req,res,next)=>{
     const {statusCode=500} = err;
