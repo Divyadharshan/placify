@@ -1,0 +1,26 @@
+<% layout('layouts/boilerplate')%>
+<style>
+body{
+    background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FtcGluZ3xlbnwwfHwwfHx8MA%3D%3D");
+}
+</style>
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="row w-100">
+        <div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <form action="/resetpassword?id=<%=id%>&token=<%=token%>" method="POST" class="validated-form" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="newpassword">Your new password</label>
+                            <input class="form-control" type="password" id="newpassword" name="newpassword" autofocus required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <button class="btn btn-success btn-block w-100">Change password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
