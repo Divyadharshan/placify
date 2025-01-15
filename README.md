@@ -7,9 +7,13 @@ Placify is a web application that allows users to explore and manage places. The
 - **User Authentication**: Secure login and registration system using sessions.
 - **Place Listings**: View a list of places, each with detailed information.
 - **Add/Edit Places**: Users can add new places or edit existing ones.
-- **Leave Reviews**: Users can leave reviews for places they have visited.
+- **Leave Reviews and Rating**: Users can leave reviews and ratings for places they have visited.
 - **Flash Messages**: Notifications for successful or failed actions, using `flash` messages.
-- **Session Management**: Session handling to keep users logged in across different pages.
+- **Session Management**: Session handling to keep users logged in across different pages. 
+- **Forgot Password**: Allows users to reset their password using a JWT token with an expiry time. Password reset emails are sent using Nodemailer.
+- **Google Sign-In/Sign-Up(Oauth)**: Enables users to sign in/sign up using their Google accounts.
+- **User Profile**: Individual user profiles display details about their contributions.
+- **Restricted Edit Access**: Only the author can edit their contributions. Admins can edit all contributions.
 
 ## Technologies Used
 
