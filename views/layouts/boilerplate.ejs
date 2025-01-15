@@ -20,7 +20,10 @@
         body {
             font-family: 'Open Sans', Arial, sans-serif;
             color: #333;
-            background: linear-gradient(135deg,  #c2c9d6, #c2c9d6);
+            background: url('https://www.theplaidzebra.com/wp-content/uploads/2016/11/Ability-to-work-from-anywhere-in-the-world.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            margin: 0;
         }
 
         .navbar {
@@ -28,7 +31,7 @@
         }
 
         #scrollUpBtn {
-            display: none; /* Initially hidden */
+            display: none;
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -39,7 +42,7 @@
             padding: 10px 15px;
             font-size: 25px;
             cursor: pointer;
-            width:50px;
+            width: 50px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
@@ -56,12 +59,10 @@
         <%- body %>
     </main>
 
-    <!-- Scroll to top button -->
     <button id="scrollUpBtn" title="Go to top" class="btn btn-primary">
         &#8593;
     </button>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
@@ -70,7 +71,6 @@
         crossorigin="anonymous"></script>
     <script src="/validateforms.js"></script>
 
-    <!-- Scroll to top functionality -->
     <script>
         let scrollUpBtn = document.getElementById("scrollUpBtn");
 

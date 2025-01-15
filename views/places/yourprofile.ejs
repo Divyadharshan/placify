@@ -1,40 +1,162 @@
 <% layout('./layouts/boilerplate') %>
+<style>
+body {
+    background-color: #f9f9fa;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
 
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh;">
-    <div class="card" style="width: 100%; max-width: 400px;">
-        <div class="card-body text-center">
-            <h2 class="card-title mb-3">Profile</h2>
-            <p class="card-text"><strong>Username:</strong> <%= user.username %></p>
-            <p class="card-text"><strong>Email:</strong> <%= user.email %></p>
-            <p class="card-text"><strong>Date Joined:</strong> <%= user.dateJoined %></p>
-            <p class="card-text"><strong>Places Added:</strong> <%= campcount %></p>
-            <p class="card-text"><strong>Reviews:</strong> <%= reviewcount %></p>
+.padding {
+    padding: 1rem !important;
+    width: 100%;
+}
+
+.user-card-full {
+    overflow: hidden;
+    border-radius: 8px;
+    width: 110%;
+}
+
+.card {
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(69, 90, 100, 0.1);
+    border: none;
+    margin: 0 auto;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 24px rgba(69, 90, 100, 0.2);
+}
+
+.user-card-full .user-profile {
+    border-radius: 8px 0 0 8px;
+}
+
+.bg-c-lite-green {
+    background: linear-gradient(to right, #ee5a6f, #f29263);
+}
+
+.user-profile {
+    padding: 20px 0;
+}
+
+.card-block {
+    padding: 1.5rem;
+}
+
+.img-radius {
+    border-radius: 50%;
+}
+
+h6 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.card .card-block p {
+    line-height: 25px;
+    font-size: 14px;
+    margin: 0;
+}
+
+.text-muted {
+    color: #919aa3 !important;
+}
+
+.f-w-600 {
+    font-weight: 600;
+}
+
+.social-link {
+    padding: 0;
+    text-align: center;
+}
+
+.social-link li {
+    display: inline-block;
+}
+
+.social-link li a {
+    font-size: 20px;
+    margin: 0 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.social-link li a:hover {
+    color: #ee5a6f;
+}
+
+@media (max-width: 768px) {
+    .user-card-full {
+        flex-direction: column;
+        border-radius: 8px;
+    }
+
+    .user-profile {
+        border-radius: 8px 8px 0 0;
+    }
+
+    .card-block {
+        padding: 1rem;
+    }
+}
+
+</style>
+
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-xl-6 col-md-12">
+                <div class="card user-card-full">
+                    <div class="row m-l-0 m-r-0">
+                        <div class="col-sm-4 bg-c-lite-green user-profile">
+                            <div class="card-block text-center text-white">
+                                <div class="m-b-25">
+                                    <img src="https://static-00.iconduck.com/assets.00/profile-circle-icon-256x256-cm91gqm2.png" 
+                                         class="img-radius" alt="User-Profile-Image" width="100">
+                                </div>
+                                <br>
+                                <h6 class="f-w-600" style="color:black;"><%= user.username %></h6>
+                                <i class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="card-block">
+                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">User Information</h6>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Email</p>
+                                        <h6 class="text-muted f-w-400"><%= user.email %></h6>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Date Joined</p>
+                                        <h6 class="text-muted f-w-400"><%= user.dateJoined %></h6>
+                                    </div>
+                                </div>
+                                <br><br>
+                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">User Statistics</h6>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Places Added</p>
+                                        <h6 class="text-muted f-w-400"><%= campcount %></h6>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Reviews</p>
+                                        <h6 class="text-muted f-w-400"><%= reviewcount %></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<style>
-    .container {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-
-    .card-body p {
-        text-align: left;
-        font-size: 18px;
-        margin: 10px 0;
-    }
-
-    .card-body h2 {
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    .card {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        border-radius: 20px;
-       
-    }
-
-</style>

@@ -9,6 +9,10 @@
         align-items: center;
         margin: 0;
         font-family: Arial, sans-serif;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FtcGluZ3xlbnwwfHwwfHx8MA%3D%3D");
+        background-size: cover;
+        background-position: center;
     }
 
     .card {
@@ -53,7 +57,6 @@
         box-shadow: 0 4px 8px rgba(40, 167, 69, 0.4);
     }
 
-
     @media (max-width: 576px) {
         .card {
             margin: 0 10px;
@@ -80,10 +83,21 @@
     <div class="row w-100">
         <div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
             <div class="card shadow">
-                <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FtcGluZ3xlbnwwfHwwfHx8MA%3D%3D"
+                <img src="https://www.theplaidzebra.com/wp-content/uploads/2016/11/Ability-to-work-from-anywhere-in-the-world.jpg"
                     alt="Login Picture" class="card-img-top img-fluid">
                 <div class="card-body">
-                    <h5 class="card-title text-center">SIGN IN</h5>
+                    <!-- Sign In with Google Button -->
+                    <a href="/auth/google"
+                        class="btn btn-success btn-block w-100 d-flex align-items-center justify-content-center mb-3">
+                        <img src="https://sm.pcmag.com/pcmag_me/review/g/google-doc/google-docs-sheets-and-slides_f6we.png"
+                            alt="Google Logo" style="width: 20px; height: 20px; margin-right: 10px;">
+                        Sign In with Google
+                    </a>
+
+                    <div class="text-center my-2">
+                        <span style="font-weight: bold; color: #555;">or</span>
+                    </div>
+
                     <form action="/login" method="POST" class="validated-form" novalidate>
                         <div class="mb-3">
                             <label class="form-label" for="username">Username</label>
@@ -93,19 +107,19 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <label class="form-label" for="password">Password</label>
                             <input class="form-control" type="password" id="password" name="password" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
-                        <button class="btn btn-success btn-block w-100">Submit</button>
+                        <div class="anc text-end">
+                            <a href="/changepwd">Forgot password?</a>
+                        </div>
+                        <br>
+                        <button class="btn btn-success btn-block w-100">Sign In</button>
                     </form>
-                    <br>
-                    <a href="/auth/google" class="btn btn-success btn-block w-100">
-                        Sign In with Google
-                    </a>
                 </div>
             </div>
         </div>
