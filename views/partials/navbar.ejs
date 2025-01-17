@@ -16,6 +16,7 @@
                     <a class="nav-link" href="/register">Sign Up</a>
                     <a class="nav-link" href="/login">Sign In</a>
                     <% } else { %>
+                    <img src="<%= currentUser.profilePicture%>" alt="Profile Picture" class="rounded-circle" width="40" height="40">
                     <a class="nav-link" href="/profile"><%= currentUser.username %>'s profile</a>
                     <a class="nav-link" href="/logout">Logout</a>
                     <% } %>

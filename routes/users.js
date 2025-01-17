@@ -7,7 +7,9 @@ const { isLoggedIn, isAuth } = require("../middleware");
 const Campground = require("../models/campgrounds")
 const review = require("../models/review")
 const {transporter} = require("../mailconfig");
-
+const multer = require("multer");
+const {storage} = require("../cloudinary");
+const upload = multer({storage});
 router.get("/login", isAuth, (req, res) => {
     res.render("users/login")
 })
@@ -88,6 +90,36 @@ router.get("/profile", isLoggedIn, async (req, res, next) => {
     const campcount = await Campground.countDocuments({ author: req.user._id });
     const reviewcount = await review.countDocuments({ author: req.user._id });
     res.render("places/yourprofile", { user, campcount, reviewcount });
+})
+
+router.get("/editprofile",isLoggedIn,async(req,res,next)=>{
+    res.render("places/editprofile");
+})
+
+router.put("/editprofile",upload.single("image"),async(req,res,next)=>{
+    try{
+        const user = await User.findById(req.user._id);
+        if(req.body.user.username){
+            user.username=req.body.user.username;
+        }
+        if(req.file){
+            user.profilePicture=req.file.path;
+        }
+        await user.save();
+        req.login(user, (err) => {
+            if (err) {
+                return res.redirect("/editprofile");
+            }
+
+            req.flash("success", "Username updated successfully!");
+            res.redirect("/profile");
+        });
+    }
+    catch(e){
+        req.flash("error","Username already exists");
+        console.log(e.message);
+        return res.redirect("/editprofile");
+    }
 })
 
 module.exports = router;
