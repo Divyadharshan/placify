@@ -13,6 +13,7 @@ Placify is a web application that allows users to explore and manage places. The
 - **Forgot Password**: Allows users to reset their password using a JWT token with an expiry time. Password reset emails are sent using Nodemailer.
 - **Google Sign-In/Sign-Up(Oauth)**: Enables users to sign in/sign up using their Google accounts.
 - **User Profile**: Individual user profiles display details about their contributions.
+- **Profile/Username Edit**: Users can change their profile picture, username(it's always unique).
 - **Restricted Edit Access**: Only the author can edit their contributions. Admins can edit all contributions.
 
 ## Technologies Used
