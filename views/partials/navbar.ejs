@@ -1,27 +1,28 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Placify</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    <a class="nav-link" href="/places">Places</a>
-                    <a class="nav-link" href="/places/new">Add New Place</a>
-                </div>
-                <div class="navbar-nav ms-auto">
-                   <% if(!currentUser){ %>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Placify</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                <a class="nav-link" href="/places">Places</a>
+                <a class="nav-link" href="/places/new">Add New Place</a>
+            </div>
+            <div class="navbar-nav ms-auto">
+                <% if(!currentUser){ %>
                     <a class="nav-link" href="/register">Sign Up</a>
                     <a class="nav-link" href="/login">Sign In</a>
-                    <% } else { %>
-                    <img src="<%= currentUser.profilePicture%>" alt="Profile Picture" class="rounded-circle" width="40" height="40">
-                    <a class="nav-link" href="/profile"><%= currentUser.username %>'s profile</a>
+                <% } else { %>
+                    <div class="d-flex align-items-center">
+                        <img src="<%= currentUser.profilePicture %>" alt="Profile Picture" class="rounded-circle me-2" width="40" height="40">
+                        <a class="nav-link p-0" href="/profile"><%= currentUser.username %>'s profile</a>
+                    </div>
                     <a class="nav-link" href="/logout">Logout</a>
-                    <% } %>
-                </div>
+                <% } %>
             </div>
         </div>
-    </nav>
-    
+    </div>
+</nav>
