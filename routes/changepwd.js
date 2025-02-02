@@ -17,7 +17,7 @@ router.post('/',isAuth,async (req, res) => {
         return res.redirect("/changepwd")
     }
     const token = jwt.sign({ id: user._id, email: user.email },process.env.JWTSECRET, { expiresIn: '120s' });
-    const resetURL = `https://placify-djb3.onrender.com/resetpassword?id=${user._id}&token=${token}`;
+    const resetURL = `https://placify-three.vercel.app/resetpassword?id=${user._id}&token=${token}`;
     const mailOptions = {
         from: process.env.EMAIL,
         to: email,
