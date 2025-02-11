@@ -66,6 +66,10 @@ To run the project locally, follow these steps:
 * Reviews: Users can submit reviews for places, including rating them and writing comments.
 
 ## Live Demo
+<<<<<<< HEAD
 - [https://placify-three.vercel.app/](https://placify-three.vercel.app/)
+=======
+- [https://placify-three.vercel.app](https://placify-three.vercel.app)
+>>>>>>> b0d015b068808ffcb78b3c77854f6cc4998f4e48
 
 ### Courtesy : Colt Steele (Udemy Instructor)
