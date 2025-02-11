@@ -17,12 +17,8 @@ router.post('/',isAuth,async (req, res) => {
         return res.redirect("/changepwd")
     }
     const token = jwt.sign({ id: user._id, email: user.email },process.env.JWTSECRET, { expiresIn: '120s' });
-<<<<<<< HEAD
     const resetURL = `https://${req.headers.host}/resetpassword?id=${user._id}&token=${token}`;
     const username = user.username;
-=======
-    const resetURL = `https://placify-three.vercel.app/resetpassword?id=${user._id}&token=${token}`;
->>>>>>> b0d015b068808ffcb78b3c77854f6cc4998f4e48
     const mailOptions = {
         from: process.env.EMAIL,
         to: email,
