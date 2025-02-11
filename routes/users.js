@@ -168,7 +168,7 @@ router.put("/editprofile", upload.single("image"), async (req, res, next) => {
             }
 
             req.flash("success", "Username updated successfully!");
-            res.redirect("/profile");
+            res.redirect("/yourprofile");
         });
     }
     catch (e) {
