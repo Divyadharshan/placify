@@ -76,7 +76,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://placify-djb3.onrender.com/auth/google/callback",
+    callbackURL: "https://placify-three.vercel.app/auth/google/callback",
 }, async (accessToken, refreshToken, profile, done) => {
     try {
         let user = await User.findOne({ googleId: profile.id });
@@ -98,11 +98,11 @@ passport.use(new GoogleStrategy({
                     text: `
 Dear ${user.username},\n
     Welcome to Placify! 🎉. We’re thrilled to have you join our growing community of explorers and place enthusiasts. Whether you’re here to discover new destinations, share your favorite spots, or manage your explorations effortlessly, you’ve come to the right place.\n
-    Here’s how you can get started:\n
-        - Explore Places: Dive into a world of amazing destinations curated for you.\n
+    Here’s how you can get started:
+        - Explore Places: Dive into a world of amazing destinations curated for you.
         - Share Your Favorites: Let others know about the places you love.\n
     We can’t wait to see where Placify takes you!\n\n
-Happy exploring,\n
+Happy exploring,
 The Placify Team 🌟`,
                 };
                 transporter.sendMail(mailOptions, function (error, info) {

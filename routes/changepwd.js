@@ -17,16 +17,20 @@ router.post('/',isAuth,async (req, res) => {
         return res.redirect("/changepwd")
     }
     const token = jwt.sign({ id: user._id, email: user.email },process.env.JWTSECRET, { expiresIn: '120s' });
-    const resetURL = `https://placify-djb3.onrender.com/resetpassword?id=${user._id}&token=${token}`;
+    const resetURL = `https://${req.headers.host}/resetpassword?id=${user._id}&token=${token}`;
+    const username = user.username;
     const mailOptions = {
         from: process.env.EMAIL,
         to: email,
-        subject: 'Placify - Forgot Password',
+        subject: 'Placify - Forgot Password/Username',
         text: `
-    You are receiving this because you (or someone else) have requested the reset of the password for your account.\n
-    Please click on the following link, or paste this into your browser to complete the process:\n
-    ${resetURL}\n
-    If you did not request this, please ignore this email and your password will remain unchanged.\n`,
+You are receiving this mail because you(or someone else) have requested to know username/change password.\n
+Your username is: ${username}\n
+In case you need to change password use the link below:
+${resetURL}\n
+If you did not request this, please ignore this email, and your password will remain unchanged.\n
+Best regards,
+The Placify Team 🌟`
     };
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
@@ -34,7 +38,7 @@ router.post('/',isAuth,async (req, res) => {
             return res.redirect("/changepwd")
 
         } else {
-            req.flash("success", 'Successfully reset link has been sent')
+            req.flash("success", 'Password reset link has been sent to your mail')
             return res.redirect("/changepwd")
         }
     });

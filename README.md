@@ -66,6 +66,6 @@ To run the project locally, follow these steps:
 * Reviews: Users can submit reviews for places, including rating them and writing comments.
 
 ## Live Demo
-- [https://placify-djb3.onrender.com/](https://placify-djb3.onrender.com/)
+- [https://placify-three.vercel.app/](https://placify-three.vercel.app/)
 
 ### Courtesy : Colt Steele (Udemy Instructor)

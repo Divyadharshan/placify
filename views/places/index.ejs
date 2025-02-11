@@ -17,7 +17,7 @@
               <p class="card-text">
                 <small><%= c.location %></small>
                 <br>
-                <small>Author : <%= c.author.username %> </small>
+                <small>Author : <a href="/profile/<%=c.author.username%>"><%= c.author.username %> </a></small>
               </p>
               <a class="btn btn-primary" href="/places/<%= c._id %>">View <%= c.title %></a>
             </div>

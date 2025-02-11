@@ -46,7 +46,7 @@
       <ul class="list-group list-group-flush">
         <li class="list-group-item text-muted">Location: <%= c.location %>
         </li>
-        <li class="list-group-item text-muted">Created by <%= c.author.username %>
+        <li class="list-group-item text-muted">Created by <a href="/profile/<%=c.author.username%>"><%= c.author.username %></a>
         </li>
       </ul>
       <% if(currentUser){ %>

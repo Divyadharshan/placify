@@ -122,7 +122,11 @@ h6 {
                                 </div>
                                 <br>
                                 <h6 class="f-w-600" style="color:black;"><%= user.username %></h6>
+                                <% if(currentUser) { %>
+                                  <% if(currentUser.username==user.username){ %>
                                 <a href="/editprofile"><button class="btn btn-success">Edit</button></a>
+                                 <% } %>
+                                <% } %>
                                 <i class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                             </div>
                         </div>
