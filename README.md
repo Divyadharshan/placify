@@ -4,7 +4,7 @@ Placify is a web application that allows users to explore and manage places. The
 
 ## Features
 
-- **User Authentication**: Secure login and registration system using sessions.
+- **User Authentication**: Secure login and registration system using sessions. New user is registered after verifying their mail.
 - **Place Listings**: View a list of places, each with detailed information.
 - **Add/Edit Places**: Users can add new places or edit existing ones.
 - **Leave Reviews and Rating**: Users can leave reviews and ratings for places they have visited.
@@ -15,6 +15,7 @@ Placify is a web application that allows users to explore and manage places. The
 - **User Profile**: Individual user profiles display details about their contributions.
 - **Profile/Username Edit**: Users can change their profile picture, username(it's always unique).
 - **Restricted Edit Access**: Only the author can edit their contributions. Admins can edit all contributions.
+- **Rule Based Chatbot**: Users can chat with bot with pre-defined prompts
 
 ## Technologies Used
 

@@ -73,29 +73,11 @@ h6 {
     font-weight: 600;
 }
 
-.social-link {
-    padding: 0;
-    text-align: center;
-}
-
-.social-link li {
-    display: inline-block;
-}
-
-.social-link li a {
-    font-size: 20px;
-    margin: 0 10px;
-    transition: color 0.3s ease-in-out;
-}
-
-.social-link li a:hover {
-    color: #ee5a6f;
-}
-
 @media (max-width: 768px) {
-    .user-card-full {
+    .user-card-full{
         flex-direction: column;
         border-radius: 8px;
+        height: 100%;
     }
 
     .user-profile {
@@ -143,8 +125,6 @@ h6 {
                                         <h6 class="text-muted f-w-400"><%= user.dateJoined %></h6>
                                     </div>
                                 </div>
-                                <br><br>
-                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">User Statistics</h6>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">Places Added</p>

@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const passportlocalmongoose = require("passport-local-mongoose");
 
+const getISTDate = () => {
+    const now = new Date();
+    return new Date(now.getTime() + (5.5 * 60 * 60 * 1000));
+};
+
 const userschema = new Schema({
     email:{
         type:String,
@@ -9,7 +14,7 @@ const userschema = new Schema({
     },
     dateJoined:{
         type:Date,
-        default:Date.now,
+        default:getISTDate,
         immutable:true
     },
     /*

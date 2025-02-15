@@ -43,8 +43,7 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use(mongoSanitize({
     replaceWith: "_",
 }));
-
-
+app.use(express.json());
 
 const store = MongoDBStore.create({
     mongoUrl: dbUrl,
@@ -154,7 +153,24 @@ app.get("/auth/google/callback",
     }
 );
 
-
+const responses = {
+    "* What is Placify?": "Placify is a platform for managing, exploring places and sharing your thoughts by writing reviews",
+    "* How can I add a new place?": `Click the "Add New Place" in Navigation Bar or scroll down to find "Add Place" button and fill in the details.`,
+    "* How do I reset my password?": `Logout and click "Forgot Password" in the Sign In Menu. You will receive link to reset password in registered mail`,
+    "* How can I review a place?": `You can leave a review on a place's details page.`,
+    "* How can I change profile picture?": `You can click on your profile in navigation bar and click edit`,
+    "* How can I change username?": `You can click on your profile in navigation bar and click edit`,
+};
+//Chatbot
+app.post("/chat", (req, res) => {
+    const userMessage = req.body.messages;
+    if (responses[userMessage]) {
+        res.json({ reply: responses[userMessage] });
+    } else {
+        const availablePrompts = Object.keys(responses).join("<br>");
+        res.json({ reply: `FAQ : <br>${availablePrompts}` });
+    }
+});
 app.use("/changepwd", changepwdroutes);
 app.use("/resetpassword", resetpwdroutes);
 app.use("/", userroutes);
