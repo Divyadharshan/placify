@@ -1,15 +1,20 @@
 <% layout('./layouts/boilerplate') %>
-<style>
-    .form-label,h3 {
-        font-weight: bold;
-        font-size: 20px;
-        color:rgb(255, 255, 255);
+  <style>
+    .form-label,
+    h3 {
+      font-weight: bold;
+      font-size: 20px;
+      color: rgb(255, 255, 255);
     }
 
     h1 {
-        font-weight: bold;
+      font-weight: bold;
     }
-</style>
+    #like-btn:hover{
+      color: red;
+      font-weight: bold;
+    }
+  </style>
   <div class="container my-3 d-flex flex-column align-items-center">
     <div class="card" style="max-width: 500px; width: 100%;">
 
@@ -44,9 +49,16 @@
       </div>
 
       <ul class="list-group list-group-flush">
+        <li class="list-group-item text" id="like-btn" style="cursor: pointer;font-size:20px;">
+          ❤️ <span id="like-count">
+            <%= c.likes.length %>
+          </span>
+        </li>
         <li class="list-group-item text-muted">Location: <%= c.location %>
         </li>
-        <li class="list-group-item text-muted">Created by <a href="/profile/<%=c.author.username%>"><%= c.author.username %></a>
+        <li class="list-group-item text-muted">Created by <a href="/profile/<%=c.author.username%>">
+            <%= c.author.username %>
+          </a>
         </li>
       </ul>
       <% if(currentUser){ %>
@@ -61,12 +73,13 @@
             <% } %>
     </div>
     <div style="margin-top:20px;max-width: 500px; width: 100%;">
-      
+
       <h3>Reviews</h3>
       <% for(let r of c.reviews) { %>
         <div class="card">
           <div class="card-body">
-            <p class="card-text"><%=r.body%>
+            <p class="card-text">
+              <%=r.body%>
             </p>
             <h6 class="card-title">Rating :
               <% for(let i=1; i<=r.rating; i++){ %>
@@ -76,31 +89,39 @@
             <h6 class="text-muted">By <%= r.author.username %>
             </h6>
             <% if(currentUser){ %>
-             <% if(currentUser.username===process.env.ADMIN_NAME || r.author.equals(currentUser._id)){ %>
-              <form action="/places/<%=c._id%>/reviews/<%=r._id%>?_method=DELETE" method="post">
-                <button class="btn btn-danger">Delete</button>
-              </form>
-              <% } %>
-              <% } %>
+              <% if(currentUser.username===process.env.ADMIN_NAME || r.author.equals(currentUser._id)){ %>
+                <form action="/places/<%=c._id%>/reviews/<%=r._id%>?_method=DELETE" method="post">
+                  <button class="btn btn-danger">Delete</button>
+                </form>
+                <% } %>
+                  <% } %>
           </div>
         </div>
         <% } %>
-        <br>
-        <h3>Add your review</h3>
-      <form action="/places/<%=c._id%>/reviews" method="post" class="mb-3 validated-form" novalidate>
-        <div class="mb-3">
-          <label class="form-label" for="rating">Rating</label>
-          <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="body">Review</label>
-          <textarea class="form-control" name="review[body]" id="body" cols="30" rows="5" required></textarea>
-          <div class="valid-feedback">
-            Valid!
-          </div>
-        </div>
-        <button class="btn btn-success">Submit</button>
-      </form>
-      <br>
+          <br>
+          <h3>Add your review</h3>
+          <form action="/places/<%=c._id%>/reviews" method="post" class="mb-3 validated-form" novalidate>
+            <div class="mb-3">
+              <label class="form-label" for="rating">Rating</label>
+              <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="body">Review</label>
+              <textarea class="form-control" name="review[body]" id="body" cols="30" rows="5" required></textarea>
+              <div class="valid-feedback">
+                Valid!
+              </div>
+            </div>
+            <button class="btn btn-success">Submit</button>
+          </form>
+          <br>
     </div>
   </div>
+  <script>
+    document.getElementById("like-btn").addEventListener("click", async function () {
+      const response = await fetch("/places/<%=c._id%>/like", { method: "POST" });
+      const data = await response.json();
+      document.getElementById("like-count").innerText = data.likes;
+    });
+  </script>
+  

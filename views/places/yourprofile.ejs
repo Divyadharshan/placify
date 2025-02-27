@@ -122,7 +122,8 @@ h6 {
                                     </div>
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">Date Joined</p>
-                                        <h6 class="text-muted f-w-400"><%= user.dateJoined %></h6>
+                                        <% let date = new Date(user.dateJoined); %>
+                                        <h6 class="text-muted f-w-400"><%= date.getDate() %>/<%= date.getMonth() + 1 %>/<%= date.getFullYear() %></h6>
                                     </div>
                                 </div>
                                 <div class="row">

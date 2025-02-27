@@ -58,6 +58,20 @@ router.get("/:id/edit",isLoggedIn,isAuthor,catchAsync(async(req,res,next)=>{
         res.render("places/edit",{campground});
 }))
 
+router.post("/:id/like", isLoggedIn,async(req,res) => {
+        const campground = await Campground.findById(req.params.id);
+        if(!campground.likes.includes(req.user._id)) {
+          //like
+          campground.likes.push(req.user._id);
+        } 
+        else{ 
+          //unlike
+          campground.likes = campground.likes.filter(id => id.toString() !== req.user._id.toString());
+        }
+       await campground.save();
+       res.json({ likes: campground.likes.length });
+});
+
 router.put("/:id",isLoggedIn,isAuthor,upload.array("image"),catchAsync(async(req,res,next)=>{
         const {id} = req.params;
         const campground = await Campground.findByIdAndUpdate(id,{...req.body.campground});
