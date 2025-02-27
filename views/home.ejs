@@ -5,10 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Placify</title>
+    <meta property="og:title" content="Placify">
+    <meta property="og:description" content="Discover and share amazing places with Placify!">
+    <meta property="og:image" content="https://www.theplaidzebra.com/wp-content/uploads/2016/11/Ability-to-work-from-anywhere-in-the-world.jpg">
+    <meta property="og:url" content="https://placify-three.vercel.app/">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
         integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/home.css">
-    <link rel="shortcut icon" href="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FtcGluZ3xlbnwwfHwwfHx8MA%3D%3D" type="image/x-icon">
+    <link rel="shortcut icon"
+        href="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FtcGluZ3xlbnwwfHwwfHx8MA%3D%3D"
+        type="image/x-icon">
 
     <style>
         body {
@@ -85,9 +91,9 @@
                 <% if (!currentUser) { %>
                     <a class="nav-link" href="/login">Sign In</a>
                     <a class="nav-link" href="/register">Sign Up</a>
-                <% } else { %>
-                    <a class="nav-link" href="/logout">Logout</a>
-                <% } %>
+                    <% } else { %>
+                        <a class="nav-link" href="/logout">Logout</a>
+                        <% } %>
             </nav>
         </header>
         <main class="px-3">
