@@ -12,9 +12,11 @@
           </div>
           <div class="col-md-8">
             <div class="card-body text-center">
-              <h3 class="card-title"><%= c.title %>  <small>❤️x<span id="like-count"><%= c.likes.length %></span></small></h3>
+              <h3 class="card-title"><%= c.title %></h3>
               <p class="card-text"><%= c.description %></p>
               <p class="card-text">
+                ❤️ <span id="like-count"><%= c.likes.length %>  <%= c.likes.length === 1 ? "like" : "likes" %></span>
+                <br>
                 <small>Location : <%= c.location %></small>
                 <br>
                 <small>Author : <a href="/profile/<%=c.author.username%>"><%= c.author.username %> </a></small>
