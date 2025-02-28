@@ -10,33 +10,18 @@
     h1 {
       font-weight: bold;
     }
-
-    .like-button {
-      cursor: pointer;
-      display: inline-block;
-      font-size: 18px;
-      border-radius: 5px;
-      transition: all 0.3s;
-    }
-
-    .like-button.liked {
+    #like-btn:hover{
       color: red;
-      font-weight: bold;
-      transform: scale(1.1);
-    }
-    .like-buttonn {
       cursor: pointer;
-      display: inline-block;
-      font-size: 18px;
-      border-radius: 5px;
-      transition: all 0.3s;
+      font-size: 20px;
+    }
+    #likebtn:hover{
+      color: red;
+      cursor: pointer;
+      font-size: 20px;
     }
 
-    .like-buttonn.liked {
-      color: red;
-      font-weight: bold;
-      transform: scale(1.1);
-    }
+    
   </style>
   <div class="container my-3 d-flex flex-column align-items-center">
     <div class="card" style="max-width: 500px; width: 100%;">
@@ -72,9 +57,9 @@
       </div>
 
       <ul class="list-group list-group-flush">
-        <li class="list-group-item text like-buttonn" id="like-btn">
+        <li class="list-group-item text" id="like-btn">
           ❤️ <span id="like-count">
-            <%= c.likes.length %>
+            <%= c.likes.length %> <%= c.likes.length === 1 ? "like" : "likes" %>
           </span>
         </li>
         <li class="list-group-item text-muted">Location: <%= c.location %>
@@ -104,12 +89,11 @@
             <p class="card-text">
               <%=r.body%>
             </p>
-            <div id="likebtn" data-rid="<%=r._id%>" class="like-button">
+            <div id="likebtn" data-rid="<%=r._id%>">
               ❤️ <span id="likecount">
-                <%= r.likes.length %>
+                <%= r.likes.length %> <%= r.likes.length === 1 ? "like" : "likes" %>
               </span>
             </div>
-            <br>
             <h6 class="card-title">Rating :
               <% for(let i=1; i<=r.rating; i++){ %>
                 <span style="font-size:24px; color:#FFD700;">★</span>
@@ -149,18 +133,25 @@
   </div>
   <script>
     document.getElementById("like-btn").addEventListener("click", async function () {
-      const likebtn = document.getElementById("like-btn");
       const response = await fetch("/places/<%=c._id%>/like", { method: "POST" });
       const data = await response.json();
-      document.getElementById("like-count").innerText = data.likes;
-      likebtn.classList.toggle("liked");
+      if(data.likes===1){
+       document.getElementById("like-count").innerText = data.likes+" like";
+      }
+      else{
+        document.getElementById("like-count").innerText = data.likes+" likes";
+      }
     });
     document.getElementById("likebtn").addEventListener("click", async function () {
       const likebtn = document.getElementById("likebtn");
       const rid = likebtn.getAttribute("data-rid");
       const response = await fetch(`/places/<%=c._id%>/reviews/${rid}/like`, { method: "POST" });
       const data = await response.json();
-      document.getElementById("likecount").innerText = data.likes;
-      likebtn.classList.toggle("liked");
+      if(data.likes===1){
+       document.getElementById("likecount").innerText = data.likes+" like";
+      }
+      else{
+        document.getElementById("likecount").innerText = data.likes+" likes";
+      }
     });
   </script>
