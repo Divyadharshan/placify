@@ -26,4 +26,17 @@ router.delete("/:reviewId",isLoggedIn,catchAsync(async(req,res)=>{
     res.redirect(`/places/${id}`);
 }))
 
+router.post("/:reviewId/like",isLoggedIn,catchAsync(async(req,res)=>{
+    const {reviewId} = req.params;
+    const review = await Review.findById(reviewId);
+    if(!review.likes.includes(req.user._id)){
+        review.likes.push(req.user._id);
+    }
+    else{
+        review.likes=review.likes.filter(id=>id.toString()!==req.user._id.toString());
+    }
+    await review.save();
+    return res.json({likes : review.likes.length});
+}))
+
 module.exports=router;

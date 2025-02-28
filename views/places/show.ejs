@@ -10,9 +10,32 @@
     h1 {
       font-weight: bold;
     }
-    #like-btn:hover{
+
+    .like-button {
+      cursor: pointer;
+      display: inline-block;
+      font-size: 18px;
+      border-radius: 5px;
+      transition: all 0.3s;
+    }
+
+    .like-button.liked {
       color: red;
       font-weight: bold;
+      transform: scale(1.1);
+    }
+    .like-buttonn {
+      cursor: pointer;
+      display: inline-block;
+      font-size: 18px;
+      border-radius: 5px;
+      transition: all 0.3s;
+    }
+
+    .like-buttonn.liked {
+      color: red;
+      font-weight: bold;
+      transform: scale(1.1);
     }
   </style>
   <div class="container my-3 d-flex flex-column align-items-center">
@@ -49,7 +72,7 @@
       </div>
 
       <ul class="list-group list-group-flush">
-        <li class="list-group-item text" id="like-btn" style="cursor: pointer;font-size:20px;">
+        <li class="list-group-item text like-buttonn" id="like-btn">
           ❤️ <span id="like-count">
             <%= c.likes.length %>
           </span>
@@ -81,6 +104,12 @@
             <p class="card-text">
               <%=r.body%>
             </p>
+            <div id="likebtn" data-rid="<%=r._id%>" class="like-button">
+              ❤️ <span id="likecount">
+                <%= r.likes.length %>
+              </span>
+            </div>
+            <br>
             <h6 class="card-title">Rating :
               <% for(let i=1; i<=r.rating; i++){ %>
                 <span style="font-size:24px; color:#FFD700;">★</span>
@@ -97,6 +126,7 @@
                   <% } %>
           </div>
         </div>
+        <br>
         <% } %>
           <br>
           <h3>Add your review</h3>
@@ -119,9 +149,18 @@
   </div>
   <script>
     document.getElementById("like-btn").addEventListener("click", async function () {
+      const likebtn = document.getElementById("like-btn");
       const response = await fetch("/places/<%=c._id%>/like", { method: "POST" });
       const data = await response.json();
       document.getElementById("like-count").innerText = data.likes;
+      likebtn.classList.toggle("liked");
+    });
+    document.getElementById("likebtn").addEventListener("click", async function () {
+      const likebtn = document.getElementById("likebtn");
+      const rid = likebtn.getAttribute("data-rid");
+      const response = await fetch(`/places/<%=c._id%>/reviews/${rid}/like`, { method: "POST" });
+      const data = await response.json();
+      document.getElementById("likecount").innerText = data.likes;
+      likebtn.classList.toggle("liked");
     });
   </script>
-  

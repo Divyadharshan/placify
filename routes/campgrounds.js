@@ -69,7 +69,7 @@ router.post("/:id/like", isLoggedIn,async(req,res) => {
           campground.likes = campground.likes.filter(id => id.toString() !== req.user._id.toString());
         }
        await campground.save();
-       res.json({ likes: campground.likes.length });
+       return res.json({ likes: campground.likes.length });
 });
 
 router.put("/:id",isLoggedIn,isAuthor,upload.array("image"),catchAsync(async(req,res,next)=>{

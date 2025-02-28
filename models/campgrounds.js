@@ -25,7 +25,7 @@ const CampgroundSchema = new Schema({
     likes: [
         {
             type: Schema.Types.ObjectId,
-            ref: "User" // Storing user IDs who liked the place
+            ref: "User"
         }
     ]
 });

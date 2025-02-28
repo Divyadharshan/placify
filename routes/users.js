@@ -131,7 +131,10 @@ router.get("/yourprofile", isLoggedIn, async (req, res, next) => {
     const user = await User.findById(req.user._id);
     const campcount = await Campground.countDocuments({ author: req.user._id });
     const reviewcount = await review.countDocuments({ author: req.user._id });
-    res.render("places/yourprofile", { user, campcount, reviewcount });
+    const camplikes = await Campground.find({author : user._id});
+    const reviewlikes = await review.find({author:user._id});
+    const totalikes = camplikes.reduce((sum, camp)=>sum+camp.likes.length,0)+reviewlikes.reduce((sum,r)=>sum+r.likes.length,0);
+    res.render("places/yourprofile", { user,campcount,reviewcount,totalikes });
 })
 
 router.get("/profile/:username",async(req,res)=>{
@@ -140,7 +143,10 @@ router.get("/profile/:username",async(req,res)=>{
     if(user){
         const campcount = await Campground.countDocuments({ author: user._id });
         const reviewcount = await review.countDocuments({ author: user._id });
-        res.render("places/yourprofile", { user, campcount, reviewcount });
+        const camplikes = await Campground.find({author : user._id});
+        const reviewlikes = await review.find({author:user._id});
+        const totalikes = camplikes.reduce((sum, camp)=>sum+camp.likes.length,0)+reviewlikes.reduce((sum,r)=>sum+r.likes.length,0);
+        res.render("places/yourprofile", { user,campcount,reviewcount,totalikes});
     }
     else{
         req.flash("error","Username doesn't exist!");
