@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🗺️✨ Placify
+# 🗺️Placify
 
 A community-powered platform to **explore, manage, and review places** with real-time communication and personalized user profiles.
 
@@ -35,55 +35,6 @@ A community-powered platform to **explore, manage, and review places** with real
 | Database        | MongoDB                                |
 | Authentication  | Passport.js, Sessions, Google OAuth    |
 | Extras          | Flash Messages, Nodemailer, JWT, Cloudinary |
-
----
-
-## 🚀 Installation
-
-### 🔧 Prerequisites
-
-- 📦 [Node.js](https://nodejs.org/) & [npm](https://www.npmjs.com/)
-- 🗃️ [MongoDB](https://www.mongodb.com/) (local or [Atlas](https://www.mongodb.com/cloud/atlas))
-
-### 🛠️ Steps
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/Divyadharshan/placify.git
-   ```
-
-2. **Navigate into the project directory:**
-   ```bash
-   cd placify
-   ```
-
-3. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-4. **Create a `.env` file** in the root directory and configure the following environment variables:
-
-   ```env
-   DB_URL=your_mongodb_connection_url
-   CLOUDINARY_CLOUD_NAME=your_cloud_name
-   CLOUDINARY_KEY=your_cloudinary_api_key
-   CLOUDINARY_SECRET=your_cloudinary_api_secret
-   EMAIL=your_email_address
-   PASSWORD=your_app_password_for_email
-   GOOGLE_CLIENT_ID=your_google_client_id
-   GOOGLE_CLIENT_SECRET=your_google_client_secret
-   SESSIONSECRET=your_session_secret
-   JWTSECRET=your_jwt_secret
-   ```
-
-5. **Run the application:**
-   ```bash
-   npm start
-   ```
-
-6. **Open your browser** and go to:  
-   👉 [http://localhost:3000](http://localhost:3000)
 
 ---
 

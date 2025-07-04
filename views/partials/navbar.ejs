@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">Placify</a>
@@ -7,20 +8,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
-                <a class="nav-link" href="/places">Places</a>
-                <a class="nav-link" href="/places/new">Add New Place</a>
+                <a class="nav-link" href="/"><i class="fa-solid fa-house"></i> Home</a>
+                <a class="nav-link" href="/places">🗺️ Places</a>
+                <a class="nav-link" href="/places/new"><i class="fa-solid fa-plus"></i> Add New Place</a>
             </div>
             <div class="navbar-nav ms-auto">
                 <% if(!currentUser){ %>
-                    <a class="nav-link" href="/register">Sign Up</a>
-                    <a class="nav-link" href="/login">Sign In</a>
+                    <a class="nav-link" href="/register"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+                    <a class="nav-link" href="/login"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
                 <% } else { %>
                     <div class="d-flex align-items-center">
-                        <img src="<%= currentUser.profilePicture %>" alt="Profile Picture" class="rounded-circle me-2" width="40" height="40">
-                        <a class="nav-link p-0" href="/yourprofile"><%= currentUser.username %>'s profile</a>
+                        <a class="nav-link p-0" href="/yourprofile"><img src="<%= currentUser.profilePicture %>" alt="Profile Picture" class="rounded-circle me-2" width="30" height="30">Profile</a>
                     </div>
-                    <a class="nav-link" href="/logout">Logout</a>
+                    <a class="nav-link" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                 <% } %>
             </div>
         </div>

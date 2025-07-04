@@ -1,37 +1,69 @@
+<style>
+  .search{
+    width: 90%;
+  }
+
+  @media (min-width: 768px) {
+    .search{
+      width: 70%;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .search {
+      width: 50%;
+    }
+  }
+</style>
+
 <% layout('./layouts/boilerplate') %>
-<div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
-  <br>
-  <h1>Explore Places!</h1>
-  <br>
-  <ul class="w-100 px-3">
-    <% for(let c of campgrounds) { %>
-      <div class="card mb-3 mx-auto">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img alt="" src="<%= c.images[0].url %>" style="object-fit: cover;width:100%;height:100%;">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body text-center">
-              <h3 class="card-title"><%= c.title %></h3>
-              <p class="card-text"><%= c.description %></p>
-              <p class="card-text">
-                ❤️ <span id="like-count"><%= c.likes.length %>  <%= c.likes.length === 1 ? "like" : "likes" %></span>
-                <br>
-                <small>Location : <%= c.location %></small>
-                <br>
-                <small>Author : <a href="/profile/<%=c.author.username%>"><%= c.author.username %> </a></small>
-              </p>
-              <a class="btn btn-primary" href="/places/<%= c._id %>">View <%= c.title %></a>
+  <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
+    <br>
+    <h1>Explore Places!</h1>
+    <br>
+    <form class="d-flex mx-auto search w-80 w-md-50 w-lg-50" action="/places/search" method="GET">
+      <input class="form-control me-1" type="search" name="match" placeholder="Search by place, author, location, description..." aria-label="Search" required>
+      <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+    <br>
+    <ul class="w-100 px-3">
+      <% for(let c of campgrounds) { %>
+        <div class="card mb-3 mx-auto">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img alt="" src="<%= c.images[0].url %>" style="object-fit: cover;width:100%;height:100%;">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body text-center">
+                <h3 class="card-title">
+                  <%= c.title %>
+                </h3>
+                <p class="card-text">
+                  <%= c.description %>
+                </p>
+                <p class="card-text">
+                  ❤️ <span id="like-count">
+                    <%= c.likes.length %>
+                      <%= c.likes.length===1 ? "like" : "likes" %>
+                  </span>
+                  <br>
+                  <small>Location : <%= c.location %></small>
+                  <br>
+                  <small>Author : <a href="/profile/<%=c.author.username%>">
+                      <%= c.author.username %>
+                    </a></small>
+                </p>
+                <a class="btn btn-primary" href="/places/<%= c._id %>">View <%= c.title %></a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <br>
-    <% } %>
-  </ul>
-  <br>
-  <a href="/places/new">
-    <button type="button" class="btn btn-secondary">Add Place</button>
-  </a>
-  <br>
-</div>
+        <br>
+        <% } %>
+    </ul>
+    <br>
+    <a href="/places/new">
+      <button type="button" class="btn btn-secondary">Add Place</button>
+    </a>
+    <br>
+  </div>

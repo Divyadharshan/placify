@@ -3,6 +3,7 @@ const router = express.Router();
 const methodOverride = require("method-override");
 const Campground = require("../models/campgrounds");
 const Review = require("../models/review")
+const User = require("../models/user");
 const catchAsync = require("../utils/catchAsync");
 const ExpressError = require("../utils/ExpressError");
 const mongoose = require("mongoose");
@@ -22,8 +23,21 @@ router.get("/new",isLoggedIn,catchAsync(async(req,res,next)=>{
     res.render("places/new");
 }))
 
+router.get("/search",catchAsync(async(req,res)=>{
+        const {match} = req.query;
+        if(!match || match.trim()===""){
+                return res.redirect("/places");
+        }
+        const regex = new RegExp(match,"i");
+        const matchusers = await User.find({username:regex});
+        const matchids = matchusers.map(user=>user._id);
+        const campgrounds = await Campground.find({
+                $or: [{ title: regex },{ location: regex },{ description: regex},{author: { $in: matchids }}]
+        });
+        res.render("places/index", { campgrounds });
+}));
 
-router.post("/",upload.array("image"),catchAsync(async(req,res,next)=>{
+router.post("/",isLoggedIn,upload.array("image"),catchAsync(async(req,res,next)=>{
         //if(!req.body.campground) throw new ExpressError("Invalid Campground Data",400);
         const campground = new Campground(req.body.campground);
         campground.images = req.files.map(f=>({url:f.path,filename:f.filename}));

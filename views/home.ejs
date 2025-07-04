@@ -105,7 +105,7 @@
             </a>
         </main>
         <footer class="mt-auto text-white-50">
-            <p>&copy; 2025 Placify </p>
+            <p>&copy; <span id="year"></span> Placify</p>
         </footer>
     </div>
 
@@ -116,6 +116,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
         integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
         crossorigin="anonymous"></script>
+    <script>
+      document.getElementById("year").textContent=new Date().getFullYear();
+    </script>
 
 </body>
 
