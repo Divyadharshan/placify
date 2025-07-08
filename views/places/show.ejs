@@ -9,7 +9,13 @@
       font-size: 20px;
       color: rgb(255, 255, 255);
     }
-
+    h3.map-heading {
+       text-align: left;
+    }
+    #map {
+          width: 100%;
+          height: 300px;
+    }
     h1 {
       font-weight: bold;
     }
@@ -86,7 +92,9 @@
             <% } %>
     </div>
     <div style="margin-top:20px;max-width: 500px; width: 100%;">
-
+    <h3 class="map-heading">Location</h3>
+    <div id="map"></div>
+    <br>
       <h3>Reviews</h3>
       <% for(let r of c.reviews) { %>
         <div class="card">
@@ -117,15 +125,13 @@
         </div>
         <br>
         <% } %>
-          <br>
-          <h3>Add your review</h3>
           <form action="/places/<%=c._id%>/reviews" method="post" class="mb-3 validated-form" novalidate>
             <div class="mb-3">
               <label class="form-label" for="rating">Rating</label>
               <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
             </div>
             <div class="mb-3">
-              <label class="form-label" for="body">Review</label>
+              <label class="form-label" for="body">Add your Review</label>
               <textarea class="form-control" name="review[body]" id="body" cols="30" rows="5" required></textarea>
               <div class="valid-feedback">
                 Valid!
@@ -160,3 +166,9 @@
       }
     });
   </script>
+  <script>
+	const maptilerApiKey = '<%- process.env.MAPTILER_API_KEY %>';
+	const campground = <%- JSON.stringify(c) %>;
+</script>
+
+<script src="/showPageMap.js"></script>

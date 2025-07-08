@@ -14,6 +14,10 @@
     <link rel="shortcut icon"
         href="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FtcGluZ3xlbnwwfHwwfHx8MA%3D%3D"
         type="image/x-icon">
+    <script crossorigin="anonymous"
+        src="https://cdn.maptiler.com/maptiler-sdk-js/v2.0.3/maptiler-sdk.umd.min.js"></script>
+    <link crossorigin="anonymous" href="https://cdn.maptiler.com/maptiler-sdk-js/v2.0.3/maptiler-sdk.css"
+        rel="stylesheet">
 
     <style>
         body {
@@ -170,10 +174,10 @@
                 messages = "* " + message;
                 input.value = "";
                 try {
-                    const response = await fetch('/chat',{
+                    const response = await fetch('/chat', {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({messages})
+                        body: JSON.stringify({ messages })
                     });
                     if (!response.ok) {
                         throw new Error("Server error");
@@ -181,7 +185,7 @@
                     const data = await response.json();
                     messagesDiv.innerHTML += `<div><b>Placi-Bot:</b> ${data.reply}</div><br>`;
                     messagesDiv.scrollTop = messagesDiv.scrollHeight;
-                }catch(error){
+                } catch (error) {
                     console.error("Chatbot Error:", error);
                     messagesDiv.innerHTML += `<div><b>Bot:</b> Sorry, something went wrong!</div>`;
                 }

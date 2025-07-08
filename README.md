@@ -12,6 +12,8 @@ A community-powered platform to **explore, manage, and review places** with real
 
 - 🔐 **User Authentication** – Secure sign up/login with email verification.
 - 📍 **Place Listings** – Explore detailed information on places.
+- 🗺️ **Map Integration** – Interactive maps to visually explore and locate places
+- 📊 **Trending Places** – Discover popular places based on user activity (likes, reviews, and views).
 - ➕ **Add/Edit Places** – Users can add and modify their own place entries.
 - 📝 **Reviews & Ratings** – Share experiences and rate places.
 - ❤️ **Like/Unlike** – Support or retract reactions on places and reviews.

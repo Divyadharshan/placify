@@ -27,7 +27,19 @@ const CampgroundSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "User"
         }
-    ]
+    ],
+    views : {type:Number,default:0},
+    geometry: {
+      type: {
+        type: String,
+        enum: ["Point"],
+        required: true,
+      },
+      coordinates: {
+        type: [Number],
+        required: true,
+      },
+    }
 });
 
 CampgroundSchema.post("findOneAndDelete", async function (doc) {
