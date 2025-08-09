@@ -85,8 +85,19 @@ passport.use(new GoogleStrategy({
                 user.googleId = profile.id;
                 await user.save();
             } else {
+                let username;
+                let unique=false;
+                while(!unique){
+                    const random=Math.floor(Math.random()*10000);//Random number between 0-9999
+                    const tusername=`user${random}`;
+                    const check=await User.findOne({username:tusername});
+                    if(!check){
+                        username=tusername;
+                        unique=true;
+                    }
+                }
                 user = new User({
-                    username: profile.displayName,
+                    username:username,
                     email: profile.emails[0].value,
                     googleId: profile.id,
                 });

@@ -26,7 +26,6 @@
       font-size: 20px;
     }
     #likebtn:hover{
-      color: red;
       user-select: none;
       cursor: pointer;
       font-size: 20px;
@@ -95,36 +94,52 @@
     <h3 class="map-heading">Location</h3>
     <div id="map"></div>
     <br>
-      <h3>Reviews</h3>
-      <% for(let r of c.reviews) { %>
-        <div class="card">
-          <div class="card-body">
-            <p class="card-text">
-              <%=r.body%>
-            </p>
-            <div id="likebtn" data-rid="<%=r._id%>">
-              ❤️ <span id="likecount">
-                <%= r.likes.length %> <%= r.likes.length === 1 ? "like" : "likes" %>
-              </span>
-            </div>
-            <h6 class="card-title">Rating :
-              <% for(let i=1; i<=r.rating; i++){ %>
-                <span style="font-size:24px; color:#FFD700;">★</span>
-                <% } %>
-            </h6>
-            <h6 class="text-muted">By <%= r.author.username %>
-            </h6>
-            <% if(currentUser){ %>
-              <% if(currentUser.username===process.env.ADMIN_NAME || r.author.equals(currentUser._id)){ %>
-                <form action="/places/<%=c._id%>/reviews/<%=r._id%>?_method=DELETE" method="post">
-                  <button class="btn btn-danger">Delete</button>
-                </form>
-                <% } %>
-                  <% } %>
-          </div>
-        </div>
-        <br>
+      <h3 class="mb-3">Reviews</h3>
+
+<% for (let r of c.reviews) { %>
+  <div class="card p-1">
+    <div class="card-body">
+
+      <!-- Username -->
+      <h6 class="text-muted mb-2">
+        <a href="/profile/<%= r.author.username %>" style="text-decoration: none; color: inherit;">
+          @<%= r.author.username %>
+        </a>
+      </h6>
+
+      <!-- Review Text -->
+      <p class="card-text mb-2"><%= r.body %></p>
+
+      <!-- Rating Stars -->
+      <div class="mb-2">
+        <% for (let i = 1; i <= r.rating; i++) { %>
+          <span style="font-size: 20px; color: #FFD700;">★</span>
         <% } %>
+      </div>
+
+      <!-- Like Button -->
+      <div class="mb-3">
+        <button id="likebtn" class="btn btn-outline-danger btn-sm" data-rid="<%= r._id %>">
+          ❤️ <span id="likecount">
+            <%= r.likes.length %> <%= r.likes.length === 1 ? "like" : "likes" %>
+          </span>
+        </button>
+      </div>
+
+      <!-- Delete Button (if authorized) -->
+      <% if (currentUser) { %>
+        <% if (currentUser.username === process.env.ADMIN_NAME || r.author.equals(currentUser._id)) { %>
+          <form action="/places/<%= c._id %>/reviews/<%= r._id %>?_method=DELETE" method="post" class="mb-0">
+            <button class="btn btn-danger btn-sm">Delete</button>
+          </form>
+        <% } %>
+      <% } %>
+
+    </div>
+  </div>
+  <br>
+<% } %>
+
           <form action="/places/<%=c._id%>/reviews" method="post" class="mb-3 validated-form" novalidate>
             <div class="mb-3">
               <label class="form-label" for="rating">Rating</label>

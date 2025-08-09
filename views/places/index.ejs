@@ -1,14 +1,12 @@
 <style>
-  .search{
+  .search {
     width: 90%;
   }
-
   @media (min-width: 768px) {
-    .search{
+    .search {
       width: 70%;
     }
   }
-
   @media (min-width: 992px) {
     .search {
       width: 50%;
@@ -17,55 +15,70 @@
 </style>
 
 <% layout('./layouts/boilerplate') %>
-  <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
-    <br>
-    <h1>Explore Places!</h1>
-    <br>
-    <form class="d-flex mx-auto search w-80 w-md-50 w-lg-50" action="/places/search" method="GET">
-      <input class="form-control me-1" type="search" name="match" placeholder="Search by place, author, location, description..." aria-label="Search" required>
-      <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </form>
-    <br>
-    <ul class="w-100 px-3">
-      <% for(let c of campgrounds) { %>
-        <div class="card mb-3 mx-auto">
-          <div class="row no-gutters">
-            <div class="col-md-4">
-              <img alt="" src="<%= c.images[0].url %>" style="object-fit: cover;width:100%;height:100%;">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body text-center">
-                <h3 class="card-title">
-                  <%= c.title %>
-                </h3>
-                <p class="card-text">
-                  <%= c.description %>
-                </p>
-                <p class="card-text">
-                ❤️ <span id="like-count">
-                    <%= c.likes.length %>
-                      <%= c.likes.length===1 ? "like" : "likes" %>
-                  </span>
-                  <br>
-                <i class="fas fa-eye"></i> <%= c.views %> views
-                <br>
-                  <small>Location : <%= c.location %></small>
-                  <br>
-                  <small>Author : <a href="/profile/<%=c.author.username%>">
-                      <%= c.author.username %>
-                    </a></small>
-                </p>
-                <a class="btn btn-primary" href="/places/<%= c._id %>">View <%= c.title %></a>
-              </div>
-            </div>
+<div class="container my-5">
+
+  <h1 class="text-center mb-4">Explore Places!</h1>
+
+  <form class="d-flex mx-auto search" action="/places/search" method="GET">
+    <input class="form-control me-1" type="search" name="match"
+      placeholder="Search by place, author, location, description..."
+      aria-label="Search" required>
+    <button class="btn btn-outline-dark" type="submit">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </form>
+
+  <hr class="my-4">
+
+  <% if (campgrounds.length === 0) { %>
+    <div class="alert alert-info text-center" role="alert">
+      No places found. Try a different search or add a new place!
+    </div>
+  <% } %>
+
+  <% for (let i = 0; i < campgrounds.length; i++) {
+       let c = campgrounds[i];
+       let isEven = i % 2 === 1;
+  %>
+    <div class="card mb-4 shadow-sm rounded">
+      <div class="row g-0 flex-column flex-md-row">
+
+        <div class="col-md-4">
+            <img src="<%= c.images[0].url %>"
+                 alt="<%= c.title %> image"
+                 class="img-fluid rounded"
+                 style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+
+        </div>
+
+        <div class="col-md-8 d-flex flex-column justify-content-between">
+          <div class="card-body">
+
+            <h5 class="card-title"><%= c.title %></h5>
+
+            <p class="card-text text-muted mb-2"><%= c.description %></p>
+            <p class="card-text mb-1">
+              <small><i class="fa-regular fa-eye"></i>&nbsp;<%= c.views %> views</small>
+            </p>
+            <p class="card-text mb-1">
+              <small>❤️ <%= c.likes.length %> <%= c.likes.length === 1 ? 'like' : 'likes' %></small>
+            </p>
+            <p class="card-text">
+              📍 <small><%= c.location %></small>
+              <br>
+              <small class="text-muted">
+                Author: <a href="/profile/<%= c.author.username %>"><%= c.author.username %></a>
+              </small>
+            </p>
+            <a href="/places/<%= c._id %>" class="btn btn-dark mt-2 rounded-pill px-4">View<i class="fa-solid fa-arrow-right ms-2"></i></a>
           </div>
         </div>
-        <br>
-        <% } %>
-    </ul>
-    <br>
-    <a href="/places/new">
-      <button type="button" class="btn btn-secondary">Add Place</button>
-    </a>
-    <br>
+
+      </div>
+    </div>
+  <% } %>
+  <div class="text-center mt-4">
+    <a href="/places/new" class="btn btn-secondary rounded-pill">Add Place</a>
   </div>
+
+</div>
