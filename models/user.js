@@ -24,7 +24,7 @@ const userschema = new Schema({
     }*/
     profilePicture: {
         type: String,
-        default: "https://static-00.iconduck.com/assets.00/profile-circle-icon-256x256-cm91gqm2.png",
+        default: "https://res.cloudinary.com/di5q8uqqc/image/upload/v1752672038/dp_e8jusg.jpg",
     },
 
 });

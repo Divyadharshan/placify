@@ -45,7 +45,7 @@ router.get("/search", catchAsync(async (req, res) => {
         const matchids = matchusers.map(user => user._id);
         const campgrounds = await Campground.find({
                 $or: [{ title: regex }, { location: regex }, { description: regex }, { author: { $in: matchids } }]
-        });
+        }).populate("author");
         res.render("places/index", { campgrounds });
 }));
 
